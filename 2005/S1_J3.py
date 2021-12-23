@@ -1,8 +1,7 @@
 def main():
 
-    with open('S1_J3_INPUT.txt') as input_file:
+    with open("S1_J3_INPUT.txt") as input_file:
         input_lines = input_file.readlines()
-
 
         inverted_line = ""
         location = ""
@@ -30,7 +29,7 @@ def main():
                 inverted_line = "RIGHT"
                 print_line = True
 
-
         print(f"Turn {inverted_line} into your HOME.")
+
 
 main()

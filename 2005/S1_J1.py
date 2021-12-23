@@ -20,7 +20,6 @@ def main():
     plan_b_cost += evening_minutes * 35
     plan_b_cost += weekend_minutes * 25
 
-
     if plan_a_cost < plan_b_cost:
         print(f"Plan A is cheapest at: ${plan_a_cost / 100}")
 

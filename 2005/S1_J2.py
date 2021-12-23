@@ -1,4 +1,4 @@
-def main ():
+def main():
     lower_limit = int(input("Enter lower limit of range:"))
     upper_limit = int(input("Enter upper limit of range:")) + 1
 
@@ -8,7 +8,10 @@ def main ():
         if rsa_check(number) == True:
             rsa_numbers_in_range += 1
 
-    print(f"The number of RSA number between {lower_limit} and {upper_limit - 1} is {rsa_numbers_in_range}")
+    print(
+        f"The number of RSA number between {lower_limit} and {upper_limit - 1} is {rsa_numbers_in_range}"
+    )
+
 
 def rsa_check(number):
     total_even_divisors = 0
@@ -22,5 +25,6 @@ def rsa_check(number):
 
     else:
         return False
+
 
 main()
