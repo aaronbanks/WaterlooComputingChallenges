@@ -128,27 +128,19 @@ def walk_clockwise(
         set_of_coordinates_visited.add(current_coordinates)
 
         if current_coordinates[0] > width_of_outline / 2 and current_coordinates[1] <= height_of_outline / 2:
-            if attempt_to_move_right() == True:
-                pass
-            else:
+            if not attempt_to_move_right():
                 attempt_to_move_down()
 
         elif current_coordinates[0] > width_of_outline / 2 and current_coordinates[1] > height_of_outline / 2:
-            if attempt_to_move_down() == True:
-                pass
-            else:
+            if not attempt_to_move_down():
                 attempt_to_move_left()
 
         elif current_coordinates[0] <= width_of_outline / 2 and current_coordinates[1] > height_of_outline / 2:
-            if attempt_to_move_left() == True:
-                pass
-            else:
+            if not attempt_to_move_left():
                 attempt_to_move_up()
 
         elif current_coordinates[0] <= width_of_outline / 2 and current_coordinates[1] <= height_of_outline / 2:
-            if attempt_to_move_up() == True:
-                pass
-            else:
+            if not attempt_to_move_up():
                 attempt_to_move_right()
 
     return current_coordinates
