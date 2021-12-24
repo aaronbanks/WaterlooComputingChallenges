@@ -1,7 +1,5 @@
 import copy
 
-#THIS PROGRAM PRODUCES THE CORRECT RESULT FOR SAMPLE INPUTS 1,3 AND 4, BUT INCORRECT FOR INPUT 2.
-
 def main():
 
     top_left_coordinate = (1, 1)
@@ -26,8 +24,6 @@ def main():
         )
     )
 
-    print(set_of_cutout_coordinates)
-
     starting_coordinate = (top_left_coordinate[0] + width_of_cutout, 1)
 
     answer = walk_clockwise(
@@ -40,7 +36,6 @@ def main():
 
     print(answer)
 
-
 def walk_clockwise(
     starting_coordinate,
     width_of_outline,
@@ -49,59 +44,114 @@ def walk_clockwise(
     set_of_cutout_coordinates,
 ):
 
-    current_coordinates = starting_coordinate
+    current_coordinates = copy.copy(starting_coordinate)
     set_of_coordinates_visited = set()
-    final_location = ()
 
-    for steps in range(steps_to_take):
+    def attempt_to_move_right():
+
+        nonlocal current_coordinates
+        nonlocal set_of_coordinates_visited
+
+        move_right = (current_coordinates[0] + 1, current_coordinates[1])
 
         if (
-            (current_coordinates[0] + 1, current_coordinates[1])
+            move_right
             not in set_of_coordinates_visited
-            and (current_coordinates[0] + 1, current_coordinates[1])
+            and move_right
             not in set_of_cutout_coordinates
             and current_coordinates[0] < width_of_outline
         ):
-            current_coordinates = (current_coordinates[0] + 1, current_coordinates[1])
+            current_coordinates = move_right
             set_of_coordinates_visited.add(current_coordinates)
+            print("R")
+            return True
 
+    def attempt_to_move_left():
 
-        elif (
-            (current_coordinates[0], current_coordinates[1] + 1)
+        nonlocal current_coordinates
+        nonlocal set_of_coordinates_visited
+
+        move_left = (current_coordinates[0] - 1, current_coordinates[1])
+
+        if (
+            move_left
             not in set_of_coordinates_visited
-            and (current_coordinates[0], current_coordinates[1] + 1)
-            not in set_of_cutout_coordinates
-            and current_coordinates[1] < height_of_outline
-        ):
-            current_coordinates = (current_coordinates[0], current_coordinates[1] + 1)
-            set_of_coordinates_visited.add(current_coordinates)
-
-        elif (
-            (current_coordinates[0] - 1, current_coordinates[1])
-            not in set_of_coordinates_visited
-            and (current_coordinates[0] - 1, current_coordinates[1])
+            and move_left
             not in set_of_cutout_coordinates
             and current_coordinates[0] > 1
         ):
-            current_coordinates = (current_coordinates[0] - 1, current_coordinates[1])
+            current_coordinates = move_left
             set_of_coordinates_visited.add(current_coordinates)
+            print("L")
+            return True
 
-        elif (
-            (current_coordinates[0], current_coordinates[1] - 1)
+    def attempt_to_move_down():
+        nonlocal current_coordinates
+        nonlocal set_of_coordinates_visited
+
+        move_down = (current_coordinates[0], current_coordinates[1] + 1)
+
+        if (
+            move_down
             not in set_of_coordinates_visited
-            and (current_coordinates[0], current_coordinates[1] - 1)
+            and move_down
+            not in set_of_cutout_coordinates
+            and current_coordinates[1] < height_of_outline
+        ):
+            current_coordinates = move_down
+            set_of_coordinates_visited.add(current_coordinates)
+            print("D")
+            return True
+
+    def attempt_to_move_up():
+        nonlocal current_coordinates
+        nonlocal set_of_coordinates_visited
+
+        move_up = (current_coordinates[0], current_coordinates[1] - 1)
+
+        if (
+            move_up
+            not in set_of_coordinates_visited
+            and move_up
             not in set_of_cutout_coordinates
             and current_coordinates[1] > 1
         ):
-            current_coordinates = (current_coordinates[0], current_coordinates[1] - 1)
+            current_coordinates = move_up
             set_of_coordinates_visited.add(current_coordinates)
-
-        else:
+            print("U")
             final_location = current_coordinates
-            break
+            return True
 
-    final_location = current_coordinates
-    return final_location
+
+    for steps in range(steps_to_take):
+        print(current_coordinates)
+        set_of_coordinates_visited.add(current_coordinates)
+
+        if current_coordinates[0] > width_of_outline / 2 and current_coordinates[1] <= height_of_outline / 2:
+            if attempt_to_move_right() == True:
+                pass
+            else:
+                attempt_to_move_down()
+
+        elif current_coordinates[0] > width_of_outline / 2 and current_coordinates[1] > height_of_outline / 2:
+            if attempt_to_move_down() == True:
+                pass
+            else:
+                attempt_to_move_left()
+
+        elif current_coordinates[0] <= width_of_outline / 2 and current_coordinates[1] > height_of_outline / 2:
+            if attempt_to_move_left() == True:
+                pass
+            else:
+                attempt_to_move_up()
+
+        elif current_coordinates[0] <= width_of_outline / 2 and current_coordinates[1] <= height_of_outline / 2:
+            if attempt_to_move_up() == True:
+                pass
+            else:
+                attempt_to_move_right()
+
+    return current_coordinates
 
 def calculate_cutout_coordinates(
     top_left_coordinate,
@@ -180,6 +230,7 @@ def calculate_cutout_coordinates(
             )
             row_location += 1
 
+    print(closed_coordinates)
     return closed_coordinates
 
 main()
