@@ -4,6 +4,7 @@ def main():
 
     print(f"Your total Calorie count is {calories_in_meal}.")
 
+
 def burger():
     while True:
         user_input = int(input("Please enter a burger choice:"))
@@ -21,10 +22,13 @@ def burger():
             return 0
 
         else:
-            print("Invalid entry, please enter a number between 1-4 to indicate your order")
-        
+            print(
+                "Invalid entry, please enter a number between 1-4 to indicate your order"
+            )
+
+
 def side():
-     while True:
+    while True:
         user_input = int(input("Please enter a side order choice:"))
 
         if user_input == 1:
@@ -40,7 +44,10 @@ def side():
             return 0
 
         else:
-            print("Invalid entry, please enter a number between 1-4 to indicate your order")
+            print(
+                "Invalid entry, please enter a number between 1-4 to indicate your order"
+            )
+
 
 def drink():
     while True:
@@ -59,7 +66,10 @@ def drink():
             return 0
 
         else:
-            print("Invalid entry, please enter a number between 1-4 to indicate your order")    
+            print(
+                "Invalid entry, please enter a number between 1-4 to indicate your order"
+            )
+
 
 def dessert():
     while True:
@@ -78,6 +88,9 @@ def dessert():
             return 0
 
         else:
-            print("Invalid entry, please enter a number between 1-4 to indicate your order")     
+            print(
+                "Invalid entry, please enter a number between 1-4 to indicate your order"
+            )
+
 
 main()
