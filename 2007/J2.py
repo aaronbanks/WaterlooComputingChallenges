@@ -8,7 +8,7 @@ def main():
         elif short_form == ":-)":
             print("I'm happy")
         elif short_form == ":-(":
-            print("I'm unhappy")  
+            print("I'm unhappy")
         elif short_form == ";-)":
             print("wink")
         elif short_form == ":-P":
@@ -16,11 +16,11 @@ def main():
         elif short_form == "(~.~)":
             print("sleepy")
         elif short_form == "TA":
-            print("totally awesome")          
+            print("totally awesome")
         elif short_form == "CCC":
             print("Canadian Computing-Competition")
         elif short_form == "CUS":
-            print("because")  
+            print("because")
         elif short_form == "TW":
             print("thank-you")
         elif short_form == "YW":
@@ -30,5 +30,6 @@ def main():
             break
         else:
             print(f"{short_form}")
+
 
 main()
