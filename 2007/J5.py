@@ -52,8 +52,9 @@ def route_finder(distance, mini, maxi, motels, route_taken):
             if motel >= (distance + mini) and motel <= (distance + maxi):
 
                 if option_found == True:
+                    #APPEND BEFORE
                     possible_routes_found += route_finder(
-                        motel, mini, maxi, motels, route_taken_copy
+                        motel, mini, maxi, motels, route_taken_copy.append(motel)
                     )
 
                 option_found = True
