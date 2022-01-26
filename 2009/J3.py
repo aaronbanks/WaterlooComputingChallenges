@@ -7,7 +7,7 @@ def main():
     central = (-1, 0)
     eastern = (0, 0)
     atlantic = (1, 0)
-    newfoundland = (1, 30) 
+    newfoundland = (1, 30)
 
     time_processed = process_time(central_time)
 
@@ -19,6 +19,7 @@ def main():
     print(f"{timezone_adjustment(time_processed, atlantic)} in Halifax")
     print(f"{timezone_adjustment(time_processed, newfoundland)} in St. John's")
 
+
 def process_time(time):
 
     time_digits = list(time)
@@ -26,16 +27,17 @@ def process_time(time):
 
     if len(time) < 3:
         time_processed[1] = int(time)
-    
+
     elif len(time) == 3:
         time_processed[0] = int(time_digits[0])
         time_processed[1] = int(time_digits[1] + time_digits[2])
-    
+
     else:
         time_processed[0] = int(time_digits[0] + time_digits[1])
         time_processed[1] = int(time_digits[2] + time_digits[3])
 
     return time_processed
+
 
 def timezone_adjustment(time, adjustment):
 
@@ -54,18 +56,19 @@ def timezone_adjustment(time, adjustment):
 
     minutes = str(adjusted_time[1])
 
-    if minutes == '0':
-        minutes = minutes + '0'
-    if int(minutes) > 0 and int(minutes) <10:
-        minutes = '0' + minutes
+    if minutes == "0":
+        minutes = minutes + "0"
+    if int(minutes) > 0 and int(minutes) < 10:
+        minutes = "0" + minutes
 
     hours = str(adjusted_time[0])
 
-    if hours == '0':
-        hours = ''
+    if hours == "0":
+        hours = ""
 
     str_adjusted_time = hours + minutes
 
     return str_adjusted_time
+
 
 main()
